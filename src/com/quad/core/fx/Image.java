@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Image
+public class Image implements Cloneable
 {
 	public int width, height;
 	public ShadowType shadowType = ShadowType.NONE;
@@ -44,4 +44,14 @@ public class Image
 	public BufferedImage getImage(){
 		return image;
 	}
+
+	@Override
+    public Image clone() {
+        try {
+            return (Image) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

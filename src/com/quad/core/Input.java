@@ -18,13 +18,13 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
 {
 	private GameContainer gc;
 
-	private boolean[] keys = new boolean[256];
+	public boolean[] keys = new boolean[256];
 	private boolean[] keysLast = new boolean[256];
 	
-	private boolean[] buttons = new boolean[5];
+	public boolean[] buttons = new boolean[5];
 	private boolean[] buttonsLast = new boolean[5];
 	
-	private int mouseX, mouseY;
+	public int mouseX, mouseY;
 	
 	public Input(GameContainer gc)
 	{
@@ -101,42 +101,54 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
 	{
 
 	}
-
+	
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		buttons[e.getButton()] = true;
+		int buttonIndex = e.getButton();
+		if (buttonIndex >= 0 && buttonIndex < buttons.length) {
+			buttons[buttonIndex] = true;
+		}
 	}
-
+	
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		buttons[e.getButton()] = false;
+		int buttonIndex = e.getButton();
+		if (buttonIndex >= 0 && buttonIndex < buttons.length) {
+			buttons[buttonIndex] = false;
+		}
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		keys[e.getKeyCode()] = true;
+		int keyCode = e.getKeyCode();
+		if (keyCode >= 0 && keyCode < keys.length) {
+			keys[keyCode] = true;
+		}
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		keys[e.getKeyCode()] = false;
+		int keyCode = e.getKeyCode();
+		if (keyCode >= 0 && keyCode < keys.length) {
+			keys[keyCode] = false;
+		}
 	}
-
+	
 	@Override
 	public void keyTyped(KeyEvent arg0)
 	{
-
+		// No implementation needed
 	}
-
+	
 	public int getMouseX()
 	{
 		return mouseX;
 	}
-
+	
 	public void setMouseX(int mouseX)
 	{
 		this.mouseX = mouseX;

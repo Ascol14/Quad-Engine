@@ -31,7 +31,7 @@ public class GameContainer implements Runnable
 	private boolean dynamicLights = false;
 	private boolean clearScreen = false;
 	private boolean debug = false;
-	private int fullscreen = 0;
+	private int fullscreen = 1;
 	
 	public GameContainer(AbstractGame game)
 	{
@@ -114,7 +114,7 @@ public class GameContainer implements Runnable
 			{
 				if(clearScreen) renderer.clear();
 				
-				game.render(this, renderer);
+				game.render(this, renderer, (float)frameCap);
 				if(lightEnable || dynamicLights){ renderer.drawLightArray(); renderer.flushMaps();}
 				renderer.setTranslate(false);
 				if(debug) renderer.drawString("FPS-" + fps, 0xffffffff, 0, 0);

@@ -1,6 +1,9 @@
 package com.quad.core;
 
 import com.quad.core.components.State;
+import com.quad.states.CinematicStart;
+import com.quad.states.StateTest;
+import com.quad.states.WaitingOneJava;
 
 /**
  * 
@@ -33,7 +36,9 @@ public class AbstractGame{
 	}
 	
 	private void loadState(int state) {
-		//load your state here
+		if(state == 0) states[0] = new WaitingOneJava();
+		if(state == 1) states[1] = new CinematicStart();
+		if(state == 2) states[2] = new StateTest();
 	}
 	
 	private void unloadState(int state) {
@@ -78,7 +83,7 @@ public class AbstractGame{
 		if(states[currentState] != null) states[currentState].update(gc, dt);
 	}
 	
-	public void render(GameContainer gc, Renderer r){
+	public void render(GameContainer gc, Renderer r, float dt){
 		/*
 		 * render paused state
 		 */
@@ -90,7 +95,7 @@ public class AbstractGame{
 		/*
 		 * render current state
 		 */
-		if(states[currentState] != null) states[currentState].render(gc, r);
+		if(states[currentState] != null) states[currentState].render(gc, r, dt);
 		
 	}
 	
